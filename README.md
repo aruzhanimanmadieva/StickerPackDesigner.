@@ -39,44 +39,44 @@ The project has two independent sides:
 
 ```mermaid
 classDiagram
-    Sticker <|-- CuteSticker
-    Sticker <|-- MemeSticker
-
-    Sticker o-- StickerRenderer
-
-    StickerRenderer <|-- DigitalRenderer
-    StickerRenderer <|-- PrintRenderer
-
     class Sticker {
         <<Abstraction>>
-        - renderer
-        + render()
+        -StickerRenderer renderer
+        +render()
     }
 
     class CuteSticker {
         <<Refined Abstraction>>
-        + render()
+        +render()
     }
 
     class MemeSticker {
         <<Refined Abstraction>>
-        + render()
+        +render()
     }
 
     class StickerRenderer {
         <<Implementor>>
-        + renderSticker()
+        +renderSticker()
     }
 
     class DigitalRenderer {
         <<Concrete Implementor>>
-        + renderSticker()
+        +renderSticker()
     }
 
     class PrintRenderer {
         <<Concrete Implementor>>
-        + renderSticker()
+        +renderSticker()
     }
+
+    Sticker <|-- CuteSticker
+    Sticker <|-- MemeSticker
+    Sticker o-- StickerRenderer
+    StickerRenderer <|-- DigitalRenderer
+    StickerRenderer <|-- PrintRenderer
+```
+
 
 ## 3. Classes and Their Roles
 **Sticker**
