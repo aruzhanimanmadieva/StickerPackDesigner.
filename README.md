@@ -37,47 +37,40 @@ The project has two independent sides:
 
 ### Structure
 
-```mermaid
-classDiagram
-    class Sticker {
-        <<Abstraction>>
-        -StickerRenderer renderer
-        +render()
-    }
+               Sticker
 
-    class CuteSticker {
-        <<Refined Abstraction>>
-        +render()
-    }
+              Abstraction
 
-    class MemeSticker {
-        <<Refined Abstraction>>
-        +render()
-    }
+                   |
 
-    class StickerRenderer {
-        <<Implementor>>
-        +renderSticker()
-    }
+         +---------+---------+
 
-    class DigitalRenderer {
-        <<Concrete Implementor>>
-        +renderSticker()
-    }
+         |                   |
 
-    class PrintRenderer {
-        <<Concrete Implementor>>
-        +renderSticker()
-    }
+    CuteSticker         MemeSticker
 
-    Sticker <|-- CuteSticker
-    Sticker <|-- MemeSticker
-    Sticker o-- StickerRenderer
-    StickerRenderer <|-- DigitalRenderer
-    StickerRenderer <|-- PrintRenderer
-```
+ Refined Abstraction  Refined Abstraction
 
+         |                   |
 
+         +---------+---------+
+
+                   |
+
+            StickerRenderer
+
+              Implementor
+
+               /        \
+
+              /          \
+
+ DigitalRenderer     PrintRenderer
+
+ Concrete            Concrete
+
+ Implementor         Implementor
+ 
 ## 3. Classes and Their Roles
 **Sticker**
 
