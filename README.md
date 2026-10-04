@@ -37,39 +37,37 @@ The project has two independent sides:
 
 ### Structure
 
-               Sticker
+                 ┌──────────────────┐
+                 │     Sticker      │
+                 │   Abstraction    │
+                 ├──────────────────┤
+                 │ - renderer       │
+                 │ + render()       │
+                 └────────┬─────────┘
+                          │
+                 ┌────────┴────────┐
+                 │                 │
+        ┌────────▼────────┐ ┌──────▼─────────┐
+        │  CuteSticker    │ │  MemeSticker   │
+        │ Refined         │ │ Refined        │
+        │ Abstraction     │ │ Abstraction    │
+        └─────────────────┘ └────────────────┘
 
-              Abstraction
 
-                   |
-
-         +---------+---------+
-
-         |                   |
-
-    CuteSticker         MemeSticker
-
- Refined Abstraction  Refined Abstraction
-
-         |                   |
-
-         +---------+---------+
-
-                   |
-
-            StickerRenderer
-
-              Implementor
-
-               /        \
-
-              /          \
-
- DigitalRenderer     PrintRenderer
-
- Concrete            Concrete
-
- Implementor         Implementor
+                 ┌─────────────────────┐
+                 │  StickerRenderer    │
+                 │     Implementor     │
+                 ├─────────────────────┤
+                 │ + renderSticker()   │
+                 └──────────┬──────────┘
+                            │
+                   ┌────────┴────────┐
+                   │                 │
+          ┌────────▼────────┐ ┌──────▼─────────┐
+          │ DigitalRenderer │ │ PrintRenderer  │
+          │ Concrete        │ │ Concrete       │
+          │ Implementor     │ │ Implementor    │
+          └─────────────────┘ └────────────────┘
  
 ## 3. Classes and Their Roles
 **Sticker**
