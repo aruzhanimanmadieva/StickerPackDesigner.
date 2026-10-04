@@ -37,37 +37,21 @@ The project has two independent sides:
 
 ### Structure
 
-                 ┌──────────────────┐
-                 │     Sticker      │
-                 │   Abstraction    │
-                 ├──────────────────┤
-                 │ - renderer       │
-                 │ + render()       │
-                 └────────┬─────────┘
-                          │
-                 ┌────────┴────────┐
-                 │                 │
-        ┌────────▼────────┐ ┌──────▼─────────┐
-        │  CuteSticker    │ │  MemeSticker   │
-        │ Refined         │ │ Refined        │
-        │ Abstraction     │ │ Abstraction    │
-        └─────────────────┘ └────────────────┘
+     ABSTRACTION                         IMPLEMENTOR
 
-
-                 ┌─────────────────────┐
-                 │  StickerRenderer    │
-                 │     Implementor     │
-                 ├─────────────────────┤
-                 │ + renderSticker()   │
-                 └──────────┬──────────┘
-                            │
-                   ┌────────┴────────┐
-                   │                 │
-          ┌────────▼────────┐ ┌──────▼─────────┐
-          │ DigitalRenderer │ │ PrintRenderer  │
-          │ Concrete        │ │ Concrete       │
-          │ Implementor     │ │ Implementor    │
-          └─────────────────┘ └────────────────┘
+┌───────────────────┐              ┌────────────────────┐
+│     Sticker       │              │ StickerRenderer    │
+│───────────────────│              │────────────────────│
+│ - renderer        │─────────────►│ + renderSticker()  │
+│ + render()        │              └─────────┬──────────┘
+└─────────┬─────────┘                        │
+          │                                  │
+     ┌────┴────┐                       ┌─────┴─────┐
+     │         │                       │           │
+┌────▼─────┐ ┌─▼─────────┐       ┌─────▼────┐  ┌───▼─────────┐
+│  Cute    │ │   Meme    │       │ Digital  │  │    Print    │
+│ Sticker  │ │  Sticker  │       │ Renderer │  │  Renderer   │
+└──────────┘ └───────────┘       └──────────┘  └─────────────┘
  
 ## 3. Classes and Their Roles
 **Sticker**
