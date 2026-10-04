@@ -37,22 +37,46 @@ The project has two independent sides:
 
 ### Structure
 
+```mermaid
+classDiagram
+    Sticker <|-- CuteSticker
+    Sticker <|-- MemeSticker
 
-   ABSTRACTION                         IMPLEMENTOR
+    Sticker o-- StickerRenderer
 
-┌───────────────────┐              ┌────────────────────┐
-│     Sticker       │              │ StickerRenderer    │
-│───────────────────│              │────────────────────│
-│ - renderer        │─────────────►│ + renderSticker()  │
-│ + render()        │              └─────────┬──────────┘
-└─────────┬─────────┘                        │
-          │                                  │
-     ┌────┴────┐                       ┌─────┴─────┐
-     │         │                       │           │
-┌────▼─────┐ ┌─▼─────────┐      ┌─────▼────┐ ┌───▼─────────┐
-│  Cute    │ │   Meme    │      │ Digital  │ │    Print    │
-│ Sticker  │ │  Sticker  │      │ Renderer │ │  Renderer   │
-└──────────┘ └───────────┘      └──────────┘ └─────────────┘
+    StickerRenderer <|-- DigitalRenderer
+    StickerRenderer <|-- PrintRenderer
+
+    class Sticker {
+        <<Abstraction>>
+        - renderer
+        + render()
+    }
+
+    class CuteSticker {
+        <<Refined Abstraction>>
+        + render()
+    }
+
+    class MemeSticker {
+        <<Refined Abstraction>>
+        + render()
+    }
+
+    class StickerRenderer {
+        <<Implementor>>
+        + renderSticker()
+    }
+
+    class DigitalRenderer {
+        <<Concrete Implementor>>
+        + renderSticker()
+    }
+
+    class PrintRenderer {
+        <<Concrete Implementor>>
+        + renderSticker()
+    }
 
 ## 3. Classes and Their Roles
 **Sticker**
