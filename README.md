@@ -37,22 +37,37 @@ The project has two independent sides:
 
 ### Structure
 
-     ABSTRACTION                         IMPLEMENTOR
+                 ┌──────────────────┐
+                 │     Sticker      │
+                 │   Abstraction    │
+                 ├──────────────────┤
+                 │ - renderer       │
+                 │ + render()       │
+                 └────────┬─────────┘
+                          │
+                 ┌────────┴────────┐
+                 │                 │
+        ┌────────▼────────┐ ┌──────▼─────────┐
+        │  CuteSticker    │ │  MemeSticker   │
+        │ Refined         │ │ Refined        │
+        │ Abstraction     │ │ Abstraction    │
+        └─────────────────┘ └────────────────┘
 
-┌───────────────────┐              ┌────────────────────┐
-│     Sticker       │              │ StickerRenderer    │
-│───────────────────│              │────────────────────│
-│ - renderer        │─────────────►│ + renderSticker()  │
-│ + render()        │              └─────────┬──────────┘
-└─────────┬─────────┘                        │
-          │                                  │
-     ┌────┴────┐                       ┌─────┴─────┐
-     │         │                       │           │
-┌────▼─────┐ ┌─▼─────────┐       ┌─────▼────┐  ┌───▼─────────┐
-│  Cute    │ │   Meme    │       │ Digital  │  │    Print    │
-│ Sticker  │ │  Sticker  │       │ Renderer │  │  Renderer   │
-└──────────┘ └───────────┘       └──────────┘  └─────────────┘
- 
+
+                 ┌─────────────────────┐
+                 │  StickerRenderer    │
+                 │     Implementor     │
+                 ├─────────────────────┤
+                 │ + renderSticker()   │
+                 └──────────┬──────────┘
+                            │
+                   ┌────────┴────────┐
+                   │                 │
+          ┌────────▼────────┐ ┌──────▼─────────┐
+          │ DigitalRenderer │ │ PrintRenderer  │
+          │ Concrete        │ │ Concrete       │
+          │ Implementor     │ │ Implementor    │
+          └─────────────────┘ └────────────────┘
 ## 3. Classes and Their Roles
 **Sticker**
 
