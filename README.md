@@ -36,25 +36,22 @@ The project has two independent sides:
 - `PrintRenderer` — Concrete Implementor
 
 ### Structure
+      ABSTRACTION                         IMPLEMENTOR
 
+┌───────────────────┐              ┌────────────────────┐
+│     Sticker       │              │ StickerRenderer    │
+│───────────────────│              │────────────────────│
+│ - renderer        │─────────────►│ + renderSticker()  │
+│ + render()        │              └─────────┬──────────┘
+└─────────┬─────────┘                        │
+          │                                  │
+     ┌────┴────┐                       ┌─────┴─────┐
+     │         │                       │           │
+┌────▼─────┐ ┌─▼─────────┐      ┌─────▼────┐ ┌───▼─────────┐
+│  Cute    │ │   Meme    │      │ Digital  │ │    Print    │
+│ Sticker  │ │  Sticker  │      │ Renderer │ │  Renderer   │
+└──────────┘ └───────────┘      └──────────┘ └─────────────┘
 
-                    Sticker
-                  Abstraction
-                       |
-             +---------+---------+
-             |                   |
-        CuteSticker         MemeSticker
-     Refined Abstraction  Refined Abstraction
-             |                   |
-             +---------+---------+
-                       |
-                StickerRenderer
-                  Implementor
-                   /        \
-                  /          \
-     DigitalRenderer     PrintRenderer
-     Concrete            Concrete
-     Implementor         Implementor
 ## 3. Classes and Their Roles
 **Sticker**
 
