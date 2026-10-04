@@ -36,7 +36,9 @@ The project has two independent sides:
 - `PrintRenderer` — Concrete Implementor
 
 ### Structure
-      ABSTRACTION                         IMPLEMENTOR
+
+
+   ABSTRACTION                         IMPLEMENTOR
 
 ┌───────────────────┐              ┌────────────────────┐
 │     Sticker       │              │ StickerRenderer    │
